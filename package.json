@@ -12,6 +12,13 @@
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
   },
-  "devDependencies": {},
-  "description": ""
+  "devDependencies": {
+    "standard": "^17.1.2"
+  },
+  "description": "",
+
+  "esLintConfig" : {
+    "extends": ".node_modules/standard/eslintrc.json"
+  }
 }
+
