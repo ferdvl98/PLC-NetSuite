@@ -1,14 +1,37 @@
-import withResults from '../mocks/with-results.json'
 
-export function useMovies () {
-  const movies = withResults.Search
+import { useRef, useState, useMemo } from 'react'
+import { searchMovies } from '../services/movies.js'
 
-  const mappedMovies = movies?.map(movie => ({
-    id: movie.imdbID,
-    title: movie.Title,
-    year: movie.Year,
-    poster: movie.Poster
-  }))
+export function useMovies ({ search, sort }) {
+  const [movies, setMovies] = useState([])
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState(null)
+  const previousSerarch =  useRef(search)
 
-  return {movies: mappedMovies}
+
+  const getMovies = async () => {
+
+    if (search === previousSerarch.current) return
+
+    try {
+      setLoading(true)
+      setError(null)
+      previousSerarch.current = search
+      const newMovies = await searchMovies({ search })
+      setMovies(newMovies)
+    } catch (error) {
+      setError(error.message)
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  const sortedMovies = useMemo (() => {
+    return sort 
+    ? [...movies].sort((a, b) => a.title.localeCompare(b.title))
+    : movies
+  }, [sort, movies])
+
+
+  return {movies: sortedMovies, loading, getMovies}
 }
