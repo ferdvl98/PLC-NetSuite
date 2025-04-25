@@ -1,0 +1,25 @@
+.component-item {
+  background: white;
+  padding: 5px;
+  margin: 10px 0;
+  border-radius: 4px;
+  cursor: grab;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.component-item.draggable {
+  background: white;
+  padding: 5px;
+  margin: 10px 0;
+  border-radius: 4px;
+  cursor: grab;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.component-item.draggable:hover {
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.component-item:active {
+  cursor: grab;
+}

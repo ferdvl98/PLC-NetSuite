@@ -1,0 +1,9 @@
+.header {
+  background-color: #004080;
+  color: white;
+  gap: 1rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+  
